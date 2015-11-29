@@ -22,20 +22,14 @@ public class SimpleAgent {
       }
    }
  
-   // Utility method: so that the application continues to run
-   private static void waitForEnterPressed() {
-      try {
-         System.out.println("Press <enter> to exit...");
-         System.in.read();
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-    }
- 
    public static void main(String argv[]) {
       System.setSecurityManager(new SecurityManager());
       SimpleAgent agent = new SimpleAgent();
       System.out.println("SimpleAgent is running...");
-      SimpleAgent.waitForEnterPressed();
+      try { while(true) {
+	Thread.sleep(500);
+      }} catch(java.lang.InterruptedException e){
+        System.out.println("SimpleAgent is exiting..");
+      }
    }
 }
